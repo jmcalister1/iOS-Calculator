@@ -16,12 +16,16 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var display: UILabel!
     
+    private var myFormatter = NumberFormatter()
+    
     var displayValue:Double {
         get {
             return Double(display.text!) ?? 0.0
         }
         set {
-            display.text = String(newValue)
+            myFormatter.minimumIntegerDigits = 1
+            myFormatter.maximumFractionDigits = 10
+            display.text = myFormatter.string(from: NSNumber(value:newValue)) ?? "0"
         }
     }
     

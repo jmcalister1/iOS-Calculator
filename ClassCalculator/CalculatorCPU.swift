@@ -28,6 +28,16 @@ class CalculatorCPU {
     
     private var accumulator:Double = 0.0
     
+    var description:String {
+        get {
+            var result:String = " "
+            if pending != nil {
+                result = String(format: "%f", pending!.firstOperand)
+            }
+            return result
+        }
+    }
+    
     struct PendingBinaryOperation {
         var binaryFunction: (Double,Double) -> Double
         var firstOperand: Double
@@ -74,6 +84,9 @@ class CalculatorCPU {
         case "√":
             performEquals()
             accumulator = sqrt(accumulator)
+        case "x²":
+            performEquals()
+            accumulator = pow(accumulator, 2)
         case "π":
             accumulator = M_PI
         default: break
