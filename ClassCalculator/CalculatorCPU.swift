@@ -34,6 +34,12 @@ class CalculatorCPU {
     }
     private var pending: PendingBinaryOperation?
     
+    private var isPartialResult: Bool {
+        get {
+            return pending != nil
+        }
+    }
+    
     func setOperand(operand:Double) {
         accumulator = operand
     }
@@ -56,6 +62,20 @@ class CalculatorCPU {
             performEquals()
             pending = PendingBinaryOperation(binaryFunction:add, firstOperand: accumulator)
         case "=": performEquals()
+        case "sin":
+            performEquals()
+            accumulator = sin(accumulator)
+        case "cos":
+            performEquals()
+            accumulator = cos(accumulator)
+        case "tan":
+            performEquals()
+            accumulator = tan(accumulator)
+        case "√":
+            performEquals()
+            accumulator = sqrt(accumulator)
+        case "π":
+            accumulator = M_PI
         default: break
         }
     }

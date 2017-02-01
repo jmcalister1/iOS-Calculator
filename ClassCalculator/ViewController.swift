@@ -11,7 +11,9 @@ import UIKit
 class ViewController: UIViewController {
     
     var userIsTyping = false
-
+    
+    var CPU = CalculatorCPU()
+    
     @IBOutlet weak var display: UILabel!
     
     var displayValue:Double {
@@ -25,6 +27,7 @@ class ViewController: UIViewController {
     
     @IBAction func digitPressed(_ sender: UIButton) {
         if let digit = sender.currentTitle {
+            
             if userIsTyping {
                 display.text! += digit
             } else {
@@ -46,8 +49,6 @@ class ViewController: UIViewController {
             userIsTyping = true
         }
     }
-    
-    var CPU = CalculatorCPU()
     
     @IBAction func doOperation(_ sender: UIButton) {
         if userIsTyping {
